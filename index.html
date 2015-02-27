@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+	<script>
+		function confirmPage()
+		{
+
+			// get all the values from the form
+
+			var name = document.getElementById("customerName").value;
+			var phone = document.getElementById("phone").value;
+			var email = document.getElementById("email").value;
+
+			var radios = document.getElementsByName('optionsPizzaSize');
+
+			for (var i = 0, length = radios.length; i < length; i++) {
+			    if (radios[i].checked) {
+			        // do whatever you want with the checked radio
+			        var pizzaSize = radios[i].value;
+
+			        // only one radio can be logically checked, don't check the rest
+			        break;
+				}
+			}
+
+
+			var checkboxes = document.getElementsByName("toppingsOptions");
+			var toppings = [];
+		 	// loop over them all
+		  	for (var i=0; i<checkboxes.length; i++) {
+			    // And stick the checked ones onto an array...
+			    if (checkboxes[i].checked) {
+			       toppings.push(checkboxes[i].value);
+			    }
+		  	}
+
+		  	var newPage = "<html><head><title>"
+			newPage += "Confirmation Page";
+			newPage += "</title><link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css\"></head><body style=\"margin: 5%\">";
+			// newpage += "<div style=\"margin: 2%\">";
+			newPage += "<div class=\"jumbotron\" style=\"text-align: center \"><p>Thank you " + name +"</p>";
+			newPage += "<p>Your telephone number is " + phone + "</p>";
+			newPage += "<p>Your email is " + email + "</p>";
+			newPage += "<p>You ordered " + pizzaSize + " size pizza with the following toppings; " + "</p>";
+
+			for (var i = 0, length = toppings.length; i < length; i++)
+			{
+				newPage += "<p>" + toppings[i] + "</p>"
+			}
+
+			newPage +=  "<button type=\"submit\" class=\"btn btn-primary btn-lg btn-block\" onclick=\"alert('Your order has been confirmed. Your pizza will be ready in 15 minutes.');\">Confirm Order</button>";
+			newPage += "</div></body></html>";
+			var j = window.open('')
+			j.document.write(newPage);
+			j.document.close();
+
+		}
+	</script>
+
+
+
+	<style>
+		html{
+			background-image: url("pizza.jpg");
+			background-size: cover;
+			background-repeat: no-repeat;
+			height: 100%;
+
+		}
+		body{
+			min-height:100%;/*hack for some mobile browsers */
+    		min-width:100%;
+			background: none;
+			height: 100%;
+			color: white;
+			font-size: 15px;
+
+
+		}
+
+		.cointainer{
+			margin: 3%;
+			margin-top: 2%;
+		}
+
+		h1{
+			margin-top: 0%;
+			text-align: center;
+		}
+  
+		legend.scheduler-border {
+			width:inherit; /* Or auto */
+			padding:0 10px; /* To give a bit of padding on the left and right */
+			border-bottom:none;
+		}
+
+		form{
+			margin-top: 50px;
+			margin: 5%;
+			text-shadow: 2px 2px 4px #666;
+		}
+
+		legend{
+			color: white;
+		}
+
+
+		fieldset.scheduler-border {
+		    border: 2px solid white !important;
+		    padding: 0 1.4em 1.4em 1.4em !important;
+		    margin: 0 0 1.5em 0 !important;
+		    -webkit-box-shadow:  0px 0px 0px 0px #000;
+		            box-shadow:  0px 0px 0px 0px #000;
+		}
+
+		legend.scheduler-border {
+		    font-size: 1.2em !important;
+		    font-weight: bold !important;
+		    text-align: left !important;
+
+		}
+
+		.btn-block{
+			width: 50%;
+			margin: auto;
+		}
+	
+	</style>
+</head>
+<body>
+	<div class="cointainer">
+  		<h1>Order Your Pizza Here!!!</h1>
+		
+		<form class="form-horizontal" onsubmit="confirmPage()">
+	  		
+
+		    <div class="form-group">
+				<label for="customername" class="col-sm-1 control-label">Name</label>
+				<div class="col-sm-11">
+				  <input type="text" class="form-control" id="customerName" placeholder="Your name." required>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="phoneNumber" class="col-sm-1 control-label">Telephone</label>
+				<div class="col-sm-11">
+				  <input type="tel" class="form-control" id="phone" placeholder="Your number." required>
+				</div>
+			</div>
+
+	  		<div class="form-group">
+				<label for="inputEmail3" class="col-sm-1 control-label">Email</label>
+				<div class="col-sm-11">
+				  <input type="email" class="form-control" id="email" placeholder="Email" required>
+				</div>
+			</div>
+
+			<fieldset class="scheduler-border">
+				<legend class="scheduler-border">Pizza size.</legend>
+
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="optionsPizzaSize" id="pizzaSmall" value="small" required checked>
+				    Small
+				  </label>
+				</div>
+
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="optionsPizzaSize" id="pizzaMedium" value="medium">
+				    Medium
+				  </label>
+				</div>
+
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="optionsPizzaSize" id="pizzaLarge" value="large">
+				    Large
+				  </label>
+				</div>
+
+			</fieldset>
+
+			<fieldset class="scheduler-border">
+				<legend class="scheduler-border">Pizza toppings.</legend>
+
+					<div class="checkbox">
+						<label>
+						<input type="checkbox" name="toppingsOptions" value="bacon">
+						Bacon
+						</label>
+					</div>
+
+					<div class="checkbox">
+						<label>
+						<input type="checkbox" name="toppingsOptions" value="extra cheese">
+						Extra cheese
+						</label>
+					</div>
+
+
+					<div class="checkbox">
+						<label>
+						<input type="checkbox" name="toppingsOptions" value="onion">
+						Onion
+						</label>
+					</div>
+
+
+					<div class="checkbox">
+						<label>
+						<input type="checkbox" name="toppingsOptions" value="mushroom">
+						Mushroom
+						</label>
+					</div>
+
+			</fieldset>
+		    <button type="submit" class="btn btn-primary btn-lg btn-block">Submit Order</button>
+		 
+	</form>
+</div>
+</body>
+</html></head>
