@@ -11,7 +11,7 @@
 	
 
 	<script>
-		function onclickSubmit()
+		function onClickSubmit()
 		{
 
 			// get all the values from the form
@@ -43,13 +43,7 @@
 			    }
 		  	}
 
-		  	var topping = "";
-		  	for (var i = 0, length = toppings.length; i < length; i++)
-			{
-				topping += toppings[i] + " ";
-			}
-
-		  	
+	
 		  	var newPage = "<html><head><title>";
 			newPage += "Confirmation Page";
 			newPage += "</title><link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css\"></head><body style=\"margin: 5%\">";
@@ -69,21 +63,11 @@
 			newPage +=  "<button type=\"submit\" class=\"btn btn-primary btn-lg btn-block\" onclick=\"alert('Your order has been confirmed. Your pizza will be ready in 15 minutes.');\">Confirm Order</button>";
 			newPage += "</div>";
 
-			var pageBody = document.getElementById("body");
-
-			pageBody.innerHTML = newPage;
 
 			var j = window.open('')
 			j.document.write(newPage);
 			j.document.close();
 
-
-			
-
-			//console.log(bodyContent);
-
-			// var element = document.getElementById("body");
-			// element.innerHTML = bodyContent;
 
 		}
 	</script>
