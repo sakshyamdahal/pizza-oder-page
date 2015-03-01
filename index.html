@@ -4,12 +4,14 @@
 	<title></title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	
 
 	<script>
-		function confirmPage()
+		function onclickSubmit()
 		{
 
 			// get all the values from the form
@@ -41,10 +43,19 @@
 			    }
 		  	}
 
-		  	var newPage = "<html><head><title>"
+		  	var topping = "";
+		  	for (var i = 0, length = toppings.length; i < length; i++)
+			{
+				topping += toppings[i] + " ";
+			}
+
+		  	
+		  	var newPage = "<html><head><title>";
 			newPage += "Confirmation Page";
 			newPage += "</title><link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css\"></head><body style=\"margin: 5%\">";
-			// newpage += "<div style=\"margin: 2%\">";
+
+
+			newPage += "<div style=\"margin: 2%\">";
 			newPage += "<div class=\"jumbotron\" style=\"text-align: center \"><p>Thank you " + name +"</p>";
 			newPage += "<p>Your telephone number is " + phone + "</p>";
 			newPage += "<p>Your email is " + email + "</p>";
@@ -52,14 +63,27 @@
 
 			for (var i = 0, length = toppings.length; i < length; i++)
 			{
-				newPage += "<p>" + toppings[i] + "</p>"
+				newPage += "<p>" + toppings[i] + "</p>";
 			}
 
 			newPage +=  "<button type=\"submit\" class=\"btn btn-primary btn-lg btn-block\" onclick=\"alert('Your order has been confirmed. Your pizza will be ready in 15 minutes.');\">Confirm Order</button>";
-			newPage += "</div></body></html>";
+			newPage += "</div>";
+
+			var pageBody = document.getElementById("body");
+
+			pageBody.innerHTML = newPage;
+
 			var j = window.open('')
 			j.document.write(newPage);
 			j.document.close();
+
+
+			
+
+			//console.log(bodyContent);
+
+			// var element = document.getElementById("body");
+			// element.innerHTML = bodyContent;
 
 		}
 	</script>
@@ -134,11 +158,11 @@
 	
 	</style>
 </head>
-<body>
+<body id="body">
 	<div class="cointainer">
   		<h1>Order Your Pizza Here!!!</h1>
 		
-		<form class="form-horizontal" onsubmit="confirmPage()">
+		<form class="form-horizontal" onsubmit="onClickSubmit()">
 	  		
 
 		    <div class="form-group">
